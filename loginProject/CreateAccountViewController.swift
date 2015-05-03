@@ -13,6 +13,11 @@ class CreateAccountViewController: UIViewController {
   @IBOutlet weak var chooseUsernameTextField: UITextField!
   @IBOutlet weak var choosePasswordTextField: UITextField!
   @IBOutlet weak var confirmPasswordTextField: UITextField!
+  
+  // we use this key to prevent typing errors
+  let kUserNameKey = "userNameKey"
+  let kPasswordKey = "passwordKey"
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,8 +30,22 @@ class CreateAccountViewController: UIViewController {
     }
     
   @IBAction func createAccountButtonPressed(sender: UIButton) {
+    if (choosePasswordTextField.text == confirmPasswordTextField.text) && (choosePasswordTextField.text != nil) {
+      // ideally you would tell a user when any of these fields don't evaluate correctly
+      // we will store in NSUserDefaults so that we can information persistance between sessions
+      // NSUserDefaults only for basic settings, in general we should not store password here
+      // get access to single instance
+      NSUserDefaults.standardUserDefaults().setObject(self.chooseUsernameTextField.text, forKey: kUserNameKey)
+      NSUserDefaults.standardUserDefaults().setObject(self.choosePasswordTextField.text, forKey: kPasswordKey)
+      // save these defaults
+      NSUserDefaults.standardUserDefaults().synchronize()
+      
+      self.dismissViewControllerAnimated(true, completion: nil)
+    }
   }
+  
   @IBAction func cancelButtonPressed(sender: UIButton) {
+    self.dismissViewControllerAnimated(true, completion: nil)
   }
 
 }
