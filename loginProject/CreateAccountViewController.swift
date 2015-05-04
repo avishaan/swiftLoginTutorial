@@ -21,10 +21,6 @@ class CreateAccountViewController: UIViewController {
   
   var delegate:CreateAccountViewControllerDelegate?
   
-  // we use this key to prevent typing errors
-  let kUsernameKey = "usernameKey"
-  let kPasswordKey = "passwordKey"
-  
     override func viewDidLoad() {
         super.viewDidLoad()
 

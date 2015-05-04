@@ -8,6 +8,10 @@
 
 import UIKit
 
+  // we use this key to prevent typing errors
+  let kUsernameKey = "usernameKey"
+  let kPasswordKey = "passwordKey"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
